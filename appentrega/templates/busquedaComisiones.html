@@ -1,0 +1,18 @@
+{% extends "herencia.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Resultado de la búsqueda de comisiones</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<p> Resultado de la búsqueda: {{comision}}</p>
+{% if comisiones %}
+<ul>
+    {% for curso in comisiones %}
+        <li> {{curso.nombre}} [{{curso.comision}}] </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

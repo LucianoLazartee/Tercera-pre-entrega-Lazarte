@@ -1,0 +1,15 @@
+{% extends "herencia.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="mb-5"> ¡BIENVENID@! </h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+    <h3>{{mensaje}}</h3>
+    <form action="/appentrega/busquedaComisiones/" method="GET">
+        <input type="number" name="comision" id="comision" placeholder="Ingrese la comisión.">
+        <input type="submit" value="Buscar">
+    </form>
+{% endblock %}

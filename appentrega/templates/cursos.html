@@ -1,0 +1,47 @@
+{% extends "herencia.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1> CURSOS </h1>
+    <b> Lista de cursos </b>
+{% endblock %}    
+
+{% block contenido_que_cambia %}
+    <br>
+    <h1> Ingrese los datos del curso: </h1>
+    <br>
+    <form action="{% url "cursos" %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <input type="submit" value="Añadir">
+    <hr>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Curso </th>
+                <th> Comisión </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>
+                    {{curso.id}}
+                </td>
+                <td>
+                    {{curso.nombre}}
+                </td>
+                <td>
+                    {{curso.comision}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

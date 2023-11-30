@@ -1,0 +1,55 @@
+{% extends "herencia.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1> PROFESORES </h1>
+    <b> Lista de profesores </b>
+{% endblock %}    
+
+{% block contenido_que_cambia %}
+    <br>
+    <h1> Ingrese los datos del profesor: </h1>
+    <br>
+    <form action="{% url "profesores" %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <input type="submit" value="Añadir">
+    <hr>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Nombre </th>
+                <th> Apellido </th>
+                <th> Email </th>
+                <th> Profesión </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesor in profesores %}
+            <tr>
+                <td>
+                    {{profesor.id}}
+                </td>
+                <td>
+                    {{profesor.nombre}}
+                </td>
+                <td>
+                    {{profesor.apellido}}
+                </td>
+                <td>
+                    {{profesor.email}}
+                </td>
+                <td>
+                    {{profesor.profesion}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

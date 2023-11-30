@@ -1,0 +1,51 @@
+{% extends "herencia.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1> ESTUDIANTES </h1>
+    <b> Lista de estudiantes </b>
+{% endblock %}    
+
+{% block contenido_que_cambia %}
+    <br>
+    <h1> Ingrese los datos del estudiante: </h1>
+    <br>
+    <form action="{% url "estudiantes" %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <input type="submit" value="Añadir">
+    <hr>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Nombre </th>
+                <th> Apellido </th>
+                <th> Email </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+            <tr>
+                <td>
+                    {{estudiante.id}}
+                </td>
+                <td>
+                    {{estudiante.nombre}}
+                </td>
+                <td>
+                    {{estudiante.apellido}}
+                </td>
+                <td>
+                    {{estudiante.email}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
